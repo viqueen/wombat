@@ -6,12 +6,13 @@
   let newVersion = "";
   let releaseURL = "";
 
-  wails.Events.On("wombat:update_available", ({old_version, new_version, url}) => {
-    oldVersion = old_version;
-    newVersion = new_version;
-    releaseURL = url;
-    visible = true;
-  });
+  // TODO: viqueen - figure out how to handle this
+  // wails.Events.On("wombat:update_available", ({old_version, new_version, url}) => {
+  //   oldVersion = old_version;
+  //   newVersion = new_version;
+  //   releaseURL = url;
+  //   visible = true;
+  // });
 
   const onCloseClicked = () => visible = false;
   const onDownloadClicked = async () => {

@@ -23,6 +23,7 @@ In a separate terminal you will need to start the frontend:
 
 ```zsh
 $ cd frontend
+$ npm install
 $ npm run dev
 ```
 
