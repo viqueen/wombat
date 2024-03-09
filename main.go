@@ -1,6 +1,7 @@
 package main
 
 import (
+	"embed"
 	_ "embed"
 	"os"
 	"wombat/internal/app"
@@ -15,6 +16,9 @@ var css string
 //go:embed frontend/public/build/extra.css
 var extra string
 
+//go:embed all:frontend/public/build
+var assets embed.FS
+
 func main() {
-	os.Exit(app.Run(js, css+extra))
+	os.Exit(app.Run(assets))
 }
