@@ -3,9 +3,10 @@
 
   let errors = [];
 
-  wails.Events.On("wombat:error", err => {
-    errors = [...errors, err];
-  })
+  // TODO: viqueen - figure out how to handle this
+  // wails.Events.On("wombat:error", err => {
+  //   errors = [...errors, err];
+  // })
 
   const onOKClicked = () => {
     errors.shift();

@@ -21,19 +21,20 @@
 
   const respModel = monaco.editor.createModel("", "javascript");
 
-  wails.Events.On("wombat:rpc_started", data => {
-    headers = {};
-    trailers = {};
-    rpc = {};
-    stats = [];
-    inflight = true;
-    client_stream = data.client_stream;
-    server_stream = data.server_stream;
-    outCount = 0;
-    inCount = 0;
-
-    respModel.setValue("");
-  })
+  // TODO: viqueen - figure out how to handle this
+  // wails.Events.On("wombat:rpc_started", data => {
+  //   headers = {};
+  //   trailers = {};
+  //   rpc = {};
+  //   stats = [];
+  //   inflight = true;
+  //   client_stream = data.client_stream;
+  //   server_stream = data.server_stream;
+  //   outCount = 0;
+  //   inCount = 0;
+  //
+  //   respModel.setValue("");
+  // })
 
   const append = (payload = "", type = "") => {
     let isEmpty = false;
@@ -68,38 +69,40 @@
     respModel.deltaDecorations([], decors);
   }
 
-  wails.Events.On("wombat:in_header_received", data => headers = data)
-  wails.Events.On("wombat:in_trailer_received", data => trailers = data)
-
-  wails.Events.On("wombat:out_payload_received", data => {
-    append(data, "out-payload");
-  })
-
-  wails.Events.On("wombat:in_payload_received", data => {
-    append(data, "in-payload");
-  })
-
-  wails.Events.On("wombat:error_received", data => {
-    append(data, "error");
-  })
-
-  wails.Events.On("wombat:rpc_ended", data => {
-    rpc = data;
-    inflight = false;
-  })
+  // TODO: viqueen - figure out how to handle this
+  // wails.Events.On("wombat:in_header_received", data => headers = data)
+  // wails.Events.On("wombat:in_trailer_received", data => trailers = data)
+  //
+  // wails.Events.On("wombat:out_payload_received", data => {
+  //   append(data, "out-payload");
+  // })
+  //
+  // wails.Events.On("wombat:in_payload_received", data => {
+  //   append(data, "in-payload");
+  // })
+  //
+  // wails.Events.On("wombat:error_received", data => {
+  //   append(data, "error");
+  // })
+  //
+  // wails.Events.On("wombat:rpc_ended", data => {
+  //   rpc = data;
+  //   inflight = false;
+  // })
 
   const addStat = (type, data) => {
     data.type = type;
     stats = [...stats, data];
   }
-  wails.Events.On("wombat:stat_begin", data => addStat("begin", data));
-  wails.Events.On("wombat:stat_out_header", data => addStat("outHeader", data));
-  wails.Events.On("wombat:stat_out_payload", data => { addStat("outPayload", data); outCount = outCount + 1; });
-  wails.Events.On("wombat:stat_out_trailer", data => addStat("outTrailer", data));
-  wails.Events.On("wombat:stat_in_header", data => addStat("inHeader", data));
-  wails.Events.On("wombat:stat_in_payload", data => { addStat("inPayload", data); inCount = inCount + 1; });
-  wails.Events.On("wombat:stat_in_trailer", data => addStat("inTrailer", data));
-  wails.Events.On("wombat:stat_end", data => addStat("end", data));
+  // TODO: viqueen - figure out how to handle this
+  // wails.Events.On("wombat:stat_begin", data => addStat("begin", data));
+  // wails.Events.On("wombat:stat_out_header", data => addStat("outHeader", data));
+  // wails.Events.On("wombat:stat_out_payload", data => { addStat("outPayload", data); outCount = outCount + 1; });
+  // wails.Events.On("wombat:stat_out_trailer", data => addStat("outTrailer", data));
+  // wails.Events.On("wombat:stat_in_header", data => addStat("inHeader", data));
+  // wails.Events.On("wombat:stat_in_payload", data => { addStat("inPayload", data); inCount = inCount + 1; });
+  // wails.Events.On("wombat:stat_in_trailer", data => addStat("inTrailer", data));
+  // wails.Events.On("wombat:stat_end", data => addStat("end", data));
 
 </script>
 

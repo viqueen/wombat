@@ -32,33 +32,35 @@
     return tick();
   }
 
-  wails.Events.On("wombat:method_input_changed", async (data, initState, m) => {
-    await reset();
-    if (!data) {
-      return
-    }
-    methodInput = data.message;
-    if (initState) {
-      state = JSON.parse(initState);
-      metadata = m;
-    } else {
-      const rawState = await backend.api.GetRawMessageState(data.full_name);
-      if (rawState) {
-        state = JSON.parse(rawState);
-      }
-    }
-  });
-
-  wails.Events.On("wombat:client_connect_started", async (addr) => {
-    await reset(true)
-    const m = await backend.api.GetMetadata(addr);
-    if (m) {
-      metadata = m;
-    }
-  })
+  // TODO: viqueen - figure out how to handle this
+  // wails.Events.On("wombat:method_input_changed", async (data, initState, m) => {
+  //   await reset();
+  //   if (!data) {
+  //     return
+  //   }
+  //   methodInput = data.message;
+  //   if (initState) {
+  //     state = JSON.parse(initState);
+  //     metadata = m;
+  //   } else {
+  //     const rawState = await backend.api.GetRawMessageState(data.full_name);
+  //     if (rawState) {
+  //       state = JSON.parse(rawState);
+  //     }
+  //   }
+  // });
+  //
+  // wails.Events.On("wombat:client_connect_started", async (addr) => {
+  //   await reset(true)
+  //   const m = await backend.api.GetMetadata(addr);
+  //   if (m) {
+  //     metadata = m;
+  //   }
+  // })
 
   const onSend = ({ detail: { method } }) => {
-    backend.api.Send(method, JSON.stringify(state), metadata)
+    // TODO: viqueen - figure out how to handle this
+    // backend.api.Send(method, JSON.stringify(state), metadata)
     // console.log(method, state, metadata);
   }
 
